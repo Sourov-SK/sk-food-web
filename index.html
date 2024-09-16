@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="food_web.css">
+  <title>SK-Food-web</title>
+</head>
+<body>
+  <!--navbar-->
+  <div class="navbar">
+      <img src="assets/logo.png" alt="" class="logo" />
+    <ul class="navbar-menu">
+      <li><a href="/" class="active">Home</a></li>
+      <li><a href="#explore-menu">Menu</a></li>
+      <li><a href="#app-download">Mobile-app</a></li>
+      <li><a href="#footer">Contact us</a></li>
+    </ul>
+  
+    <div class="navbar-right">
+      <div class="navbar-search-icon">
+        <a href="/cart">
+          <img src="assets/basket_icon.png" alt="" />
+        </a>
+        <div class="dot"></div>
+      </div>
+  
+      <button id="sign-in-button">Sign In / Sign Up</button>
+      <!-- Popup Container -->
+      <div id="login-popup" class="login-popup">
+        <form id="login-form" class="login-popup-container" onsubmit="handleFormSubmit(event)">
+          <div class="login-popup-title">
+            <h2 id="popup-title">Login</h2>
+            <img src="assets/cross_icon.png" alt="Close" onclick="togglePopup(false)" />
+          </div>
+          <div class="login-popup-inputs">
+            <!-- Conditional rendering based on state -->
+            <input id="name" name="name" type="text" placeholder="Your Name" required />
+            <input id="email" name="email" type="email" placeholder="Your email" required />
+            <input id="password" name="password" type="password" placeholder="Password" required />
+          </div>
+          <button type="submit">Login</button>
+          <div class="login-popup-condition">
+            <input type="checkbox" required />
+            <p>By continuing, I agree to the terms of use & privacy policy.</p>
+          </div>
+          <p id="toggle-text">Create a new account? <span onclick="toggleState()">Click here</span></p>
+        </form>
+      </div>
+      <div class="navbar-profile">
+        <img src="assets/profile_icon.png" alt="" />
+        <ul class="nav-profile-dropdown">
+          <li>
+              <img src="assets/bag_icon.png" alt="" />
+              <p>Orders</p>
+            </li>
+          <hr />
+          <li><a href="#" id="logout-link">
+              <img src="assets/logout_icon.png" alt="" />
+              <p>Logout</p>
+            </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!--navbar end-->
+<!--header img-->
+<section class="header">
+    <div className="header-contents">
+      <h2>Order your favourite food here</h2>
+      <p>Choose from a diverse menu featuring a delectable array of dishes crafted with the finest ingredients and culinary expertise. Our mission is to satisfy your cravings and elevate your dining experience, one delicious meal at a time.</p>
+      <button>View Menu</button>
+    </div>
+</section>
+
+
+<!--Exploermenu-->
+  <div class="explore-menu" id="explore-menu">
+    <h1>Explore Our Menu</h1>
+    <p class="explore-menu-text">Choose from a diverse menu featuring a delectable array of dishes crafted with the finest ingredients and culinary expertise. Our mission is to satisfy your cravings and elevate your dining experience, one delicious meal at a time.</p>
+  
+    <div class="explore-menu-list">
+      <div class="explore-menu-list-item">
+        <img src="assets/menu_1.png" alt="" class="menu-item-image" />
+        <p>Salad</p>
+      </div>
+      <div class="explore-menu-list-item">
+        <img src="assets/menu_2.png" alt="" class="menu-item-image" />
+        <p>Rolls</p>
+      </div>
+      <div class="explore-menu-list-item">
+        <img src="assets/menu_3.png" alt="" class="menu-item-image" />
+        <p>Deserts</p>
+      </div>
+      <div class="explore-menu-list-item">
+        <img src="assets/menu_4.png" alt="" class="menu-item-image" />
+        <p>Sandwich</p>
+      </div>
+      <div class="explore-menu-list-item">
+        <img src="assets/menu_5.png" alt="" class="menu-item-image" />
+        <p>Cake</p>
+      </div>
+      <div class="explore-menu-list-item">
+        <img src="assets/menu_6.png" alt="" class="menu-item-image" />
+        <p>Pure Veg</p>
+      </div>
+      <div class="explore-menu-list-item">
+        <img src="assets/menu_7.png" alt="" class="menu-item-image" />
+        <p>Pasta</p>
+      </div>
+      <div class="explore-menu-list-item">
+        <img src="assets/menu_8.png" alt="" class="menu-item-image" />
+        <p>Noodles</p>
+      </div>
+      <!-- Add more items as needed -->
+    </div>
+    <hr />
+  </div>
+  
+  <!--Exploermenu end-->
+
+  <!--food display-->
+  <div class="food-display" id="food-display">
+    <h2>Top dishes near you</h2>
+    <div class="food-display-list" id="food-display-list">
+      <!-- Food items will be dynamically inserted here -->
+      <div class="food-item">
+        <div class="food-item-img-container">
+          <img class="food-item-image" src="assets/food_1.png" alt="Food Item 1" />
+          <div class="food-item-counter">
+            <img class="add" src="assets\add_icon_green.png" alt="Add to Cart" />
+          </div>
+        </div>
+        <div class="food-item-info">
+          <div class="food-item-name-rating">
+            <p>Greek salad</p>
+            <img src="assets\rating_starts.png" alt="Rating" />
+          </div>
+          <p class="food-item-desc">Food provides essential nutrients for overall health and well-being</p>
+          <p class="food-item-price">$12</p>
+        </div>
+      </div>
+      
+      <div class="food-item">
+        <div class="food-item-img-container">
+          <img class="food-item-image" src="assets/food_2.png" alt="Food Item 2" />
+          <div class="food-item-counter">
+            <img class="add" src="assets\add_icon_green.png" alt="Add to Cart" />
+          </div>
+        </div>
+        <div class="food-item-info">
+          <div class="food-item-name-rating">
+            <p>Veg salad</p>
+            <img src="assets\rating_starts.png" alt="Rating" />
+          </div>
+          <p class="food-item-desc">Food provides essential nutrients for overall health and well-being</p>
+          <p class="food-item-price">$18</p>
+        </div>
+      </div>
+      
+      <div class="food-item">
+        <div class="food-item-img-container">
+          <img class="food-item-image" src="assets/food_3.png" alt="Food Item 3" />
+          <div class="food-item-counter">
+            <img class="add" src="assets\add_icon_green.png" alt="Add to Cart" />
+          </div>
+        </div>
+        <div class="food-item-info">
+          <div class="food-item-name-rating">
+            <p>Clover Salad</p>
+            <img src="assets\rating_starts.png" alt="Rating" />
+          </div>
+          <p class="food-item-desc">Food provides essential nutrients for overall health and well-being</p>
+          <p class="food-item-price">$10.99</p>
+        </div>
+      </div>
+
+      <div class="food-item">
+        <div class="food-item-img-container">
+          <img class="food-item-image" src="assets/food_13.png" alt="Food Item 3" />
+          <div class="food-item-counter">
+            <img class="add" src="assets\add_icon_green.png" alt="Add to Cart" />
+          </div>
+        </div>
+        <div class="food-item-info">
+          <div class="food-item-name-rating">
+            <p>Chicken Sandwich</p>
+            <img src="assets\rating_starts.png" alt="Rating" />
+          </div>
+          <p class="food-item-desc">Food provides essential nutrients for overall health and well-being</p>
+          <p class="food-item-price">$12</p>
+        </div>
+      </div>
+
+      <div class="food-item">
+        <div class="food-item-img-container">
+          <img class="food-item-image" src="assets/food_18.png" alt="Food Item 3" />
+          <div class="food-item-counter">
+            <img class="add" src="assets\add_icon_green.png" alt="Add to Cart" />
+          </div>
+        </div>
+        <div class="food-item-info">
+          <div class="food-item-name-rating">
+            <p>Vegan Cake</p>
+            <img src="assets\rating_starts.png" alt="Rating" />
+          </div>
+          <p class="food-item-desc">Food provides essential nutrients for overall health and well-being</p>
+          <p class="food-item-price">$15</p>
+        </div>
+      </div>
+
+      <div class="food-item">
+        <div class="food-item-img-container">
+          <img class="food-item-image" src="assets/food_21.png" alt="Food Item 3" />
+          <div class="food-item-counter">
+            <img class="add" src="assets\add_icon_green.png" alt="Add to Cart" />
+          </div>
+        </div>
+        <div class="food-item-info">
+          <div class="food-item-name-rating">
+            <p>Garlic Mushroom</p>
+            <img src="assets\rating_starts.png" alt="Rating" />
+          </div>
+          <p class="food-item-desc">Food provides essential nutrients for overall health and well-being</p>
+          <p class="food-item-price">$18</p>
+        </div>
+      </div>
+      <div class="food-item">
+        <div class="food-item-img-container">
+          <img class="food-item-image" src="assets/food_26.png" alt="Food Item 3" />
+          <div class="food-item-counter">
+            <img class="add" src="assets\add_icon_green.png" alt="Add to Cart" />
+          </div>
+        </div>
+        <div class="food-item-info">
+          <div class="food-item-name-rating">
+            <p>Tomato Pasta</p>
+            <img src="assets\rating_starts.png" alt="Rating" />
+          </div>
+          <p class="food-item-desc">Food provides essential nutrients for overall health and well-being</p>
+          <p class="food-item-price">$10</p>
+        </div>
+      </div>
+      <div class="food-item">
+        <div class="food-item-img-container">
+          <img class="food-item-image" src="assets/food_23.png" alt="Food Item 3" />
+          <div class="food-item-counter">
+            <img class="add" src="assets\add_icon_green.png" alt="Add to Cart" />
+          </div>
+        </div>
+        <div class="food-item-info">
+          <div class="food-item-name-rating">
+            <p>Mix Veg Pulao</p>
+            <img src="assets\rating_starts.png" alt="Rating" />
+          </div>
+          <p class="food-item-desc">Food provides essential nutrients for overall health and well-being</p>
+          <p class="food-item-price">$16</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--food display ended-->
+
+<!--App download-->
+<div class="app-download" id="app-download">
+  <p>For Better Experience Download <br />SK. App</p>
+  <div class="app-download-platforms">
+    <img src="assets/play_store.png" alt="Google Play Store" />
+    <img src="assets/app_store.png" alt="Apple App Store" />
+  </div>
+</div>
+<!--App download end-->
+
+<!--footer-->
+<div class="footer" id="footer">
+  <div class="footer-content">
+    <div class="footer-content-left">
+      <img src="assets/logo.png" alt="Logo" />
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      <div class="footer-social-icons">
+        <img src="assets/facebook_icon.png" alt="Facebook" />
+        <img src="assets/twitter_icon.png" alt="Twitter" />
+        <img src="assets/linkedin_icon.png" alt="LinkedIn" />
+      </div>
+    </div>
+    
+    <div class="footer-content-center">
+      <h2>COMPANY</h2>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Delivery</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-content-right">
+      <h2>GET IN TOUCH</h2>
+      <ul>
+        <li>+8801758666276</li>
+        <li><a href="mailto:sourovkumar.css@gmail.com">sourovkumar.css@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <hr />
+  <p class="footer-copyright">Copyright 2024 @ SK.com - All Rights Reserved.</p>
+</div>
+
+<!--footer end-->
+
+  <script src="food_web.js"></script>
+</body>
+</html>
